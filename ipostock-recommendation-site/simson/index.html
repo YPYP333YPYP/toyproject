@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+  <link href='fullcalendar/packages/core/main.css' rel='stylesheet' />
+  <link href='fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+
+  <!-- 부트스트랩 5.1-->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+    integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+    crossorigin="anonymous"></script>
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>심슨매매법</title>
+</head>
+
+<body>
+    <div class="text-center" style="max-height: 5rem;">
+      <img src="./data/icon/icon.png" alt="이미지" style="max-height: 5rem;"/>
+    </div>
+  <div id='calendar'></div>
+  <div class="content"
+    style="max-width: 900px; align-items:center; justify-content: center; float:none; margin:0 auto;">
+    <h1 id="ticker">엔젯</h1>
+    <div class="row">
+      <div class="col-8" style="min-height: 500px;">
+        <img src="./data/graph/엔젯.png" alt="그래프" id = "graph" />
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm " style="height: 95%;">
+          <div class="card-header py-3 text-bg-primary " style="background-color:rgb(194, 240, 255);">
+            <h1 class="my-0 fw-normal" id="consensus"> BUY </h1>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title pricing-card-title" id="score">5점<small class="text-muted fw-light">/5점</small></h3>
+            <ul class="list-unstyled mt-3 mb-4" id="scorelist">
+              <br>
+              <li>확보 경쟁우위 지속</li>
+              <li>프린팅 사업</li>
+              <li>삼성 전기 사업</li>
+              <li>중국 봉쇄</li>
+              <li>디스플레이 매출</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr id="table1">
+
+              </tr>
+            </thead>
+            <tbody id="table1content">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col">
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr id="table2">
+              </tr>
+            </thead>
+            <tbody id="table2content">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <script src='fullcalendar/packages/core/main.js'></script>
+  <script src='fullcalendar/packages/interaction/main.js'></script>
+  <script src='fullcalendar/packages/daygrid/main.js'></script>
+
+  <script src="./data/event/event.json" type="text/javascript"></script>
+  <script src="./data/table/윤성에프앤씨fs.json" type="text/javascript"></script>
+  <script src="./data/table/윤성에프앤씨is.json" type="text/javascript"></script>
+  <script src="./data/table/디티앤씨알오fs.json" type="text/javascript"></script>
+  <script src="./data/table/디티앤씨알오is.json" type="text/javascript"></script>
+  <script src="./data/table/엔젯fs.json" type="text/javascript"></script>
+  <script src="./data/table/엔젯is.json" type="text/javascript"></script>
+  <script src="./data/table/티쓰리엔터테인먼트fs.json" type="text/javascript"></script>
+  <script src="./data/table/티쓰리엔터테인먼트is.json" type="text/javascript"></script>
+  <script src="./data/table/티에프이fs.json" type="text/javascript"></script>
+  <script src="./data/table/티에프이is.json" type="text/javascript"></script>
+
+  
+  <script src="./data/keyword/디티앤씨알오_키워드.json" type="text/javascript"></script>
+  <script src="./data/keyword/엔젯_키워드.json" type="text/javascript"></script>
+  <script src="./data/keyword/윤성에프앤씨_키워드.json" type="text/javascript"></script>
+  <script src="./data/keyword/티쓰리엔터테인먼트_키워드.json" type="text/javascript"></script>
+  <script src="./data/keyword/티에프이_키워드.json" type="text/javascript"></script>
+  <script>
+    const fsarray=[];
+    const isarray=[];
+    const keyarray=[];
+    const scorearray=[];
+    
+    fsarray.push(JSON.parse(dt));
+    isarray.push(JSON.parse(dt2));
+    keyarray.push(JSON.parse(dtkey));
+    scorearray.push({"예상등급":"D", "추천":"투자 비추천", "수익률":"-4%"})
+
+    fsarray.push(JSON.parse(ys));
+    isarray.push(JSON.parse(ys2));
+    keyarray.push(JSON.parse(yskey));
+    scorearray.push({"예상등급":"D", "추천":"투자 비추천", "수익률":"-14%"})
+    
+    fsarray.push(JSON.parse(tt));
+    isarray.push(JSON.parse(tt2));
+    keyarray.push(JSON.parse(ttkey));
+    scorearray.push({"예상등급":"B+", "추천":"투자 추천", "수익률":"+68%"})
+    
+    fsarray.push(JSON.parse(tf));
+    isarray.push(JSON.parse(tf2));
+    keyarray.push(JSON.parse(tfkey))
+    scorearray.push({"예상등급":"B+", "추천":"투자 추천", "수익률":"+51%"})
+    
+    fsarray.push(JSON.parse(ej));
+    isarray.push(JSON.parse(ej2));
+    keyarray.push(JSON.parse(ejkey))
+    scorearray.push({"예상등급":"D", "추천":"투자 비추천", "수익률":"+1%"})
+  </script>
+  <script>
+    function hellow(data) {
+      let ticker = document.getElementById("ticker");
+      let ev = Event;
+      ticker.innerText = (JSON.parse(ev)["종목명"][data]);
+      ticker.scrollIntoView(true);
+
+      let small = document.createElement('small');
+      small.innerHTML = `<br><p style="font-size: 1.3rem;">예상 수익률:</p>${scorearray[data]["수익률"]}`
+      small.setAttribute("class", "text-muted fw-light");
+      let score = document.getElementById("score");
+      score.innerHTML = `${scorearray[data]["추천"]}`;
+      score.appendChild(small);
+      document.getElementById("consensus").innerHTML = `<small class ="text-muted fw-light" style="font-size: 1.3rem;">등급:</small>${scorearray[data]["예상등급"]}`;
+      let keyhtml="<br><li><h2>키워드:</h2></li>"
+      for(let x = 0 ; x < 5 ; x ++){
+        keyhtml=keyhtml+`
+        <li>
+          ${keyarray[data][x]}
+        </li>
+        `
+      }
+      document.getElementById("scorelist").innerHTML = keyhtml;
+      createTable(data);
+      changegraph(data);
+    }
+    function transform(params) {
+      let rst = []
+      for (let x = 0; x < Object.keys(params["종목명"]).length; x++) {
+        rst.push({
+          "title": params["종목명"][x],
+          "start": new Date(params["신규상장일"][x]).toISOString().slice(0, 10),
+          "end": new Date(params["신규상장일"][x]).toISOString().slice(0, 10),
+          "url": `javascript:hellow(${x})`
+        })
+      }
+      return rst;
+    }
+    function changegraph(params){
+      let dir = "./data/graph/";
+      let namelist = ["디티앤씨알오.png", "윤성에프앤씨.png", "티쓰리엔터테인먼트.png", "티에프이.png", "엔젯.png"];
+      document.getElementById("graph").src = dir+namelist[params];
+    }
+  </script>
+  <script>
+    function createTable(params) {
+      let table1 = document.getElementById("table1");
+      let table1content = document.getElementById("table1content");
+      let table2 = document.getElementById("table2");
+      let table2content = document.getElementById("table2content");
+      table1.innerHTML = `
+        <th scope="col">재무재표</th>
+        <th scope="col">해당연도</th>
+        <th scope="col">이전연도</th>
+      `;
+      table1content.innerHTML = tableline(fsarray[params]);
+      table2.innerHTML = `
+        <th scope="col">손익계산서</th>
+        <th scope="col">해당연도</th>
+        <th scope="col">이전연도</th>
+      `;
+      table2content.innerHTML = tableline(isarray[params]);
+    }
+    function tableline(params) {
+      let temp = params;
+      let c = "";
+      for (x = 0; x < Object.keys(params["Unnamed: 0"]).length ; x++) {
+        c=c+"<tr>"
+        c = c + `<td>${temp["Unnamed: 0"][x]}</td>`
+        c = c + `<td>${temp["해당연도"][x]?temp["해당연도"][x]:"-"}</td>`
+        c = c + `<td>${temp["이전연도"][x]?temp["이전연도"][x]:"-"}</td>`
+        c = c + "</tr>";
+      }
+      return c;
+    }
+  </script>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        plugins: ['interaction', 'dayGrid'],
+        defaultDate: new Date().toISOString(),
+        editable: true,
+        eventLimit: true, // allow "more" link when too many events
+        events: transform(JSON.parse(Event))
+      });
+
+      calendar.render();
+    });
+    hellow(4);
+  </script>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
